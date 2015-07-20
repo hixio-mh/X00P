@@ -456,9 +456,7 @@ int x509_process_extension(void *context, size_t hdrlen,
 
 		ctx->cert->raw_skid_size = vlen;
 		ctx->cert->raw_skid = v;
-		kid = asymmetric_key_generate_id(ctx->cert->raw_subject,
-						 ctx->cert->raw_subject_size,
-						 v, vlen);
+		kid = asymmetric_key_generate_id(v, vlen, "", 0);
 		if (IS_ERR(kid))
 			return PTR_ERR(kid);
 		ctx->cert->skid = kid;
@@ -555,9 +553,7 @@ int x509_akid_note_kid(void *context, size_t hdrlen,
 	if (ctx->cert->akid_skid)
 		return 0;
 
-	kid = asymmetric_key_generate_id(ctx->cert->raw_issuer,
-					 ctx->cert->raw_issuer_size,
-					 value, vlen);
+	kid = asymmetric_key_generate_id(value, vlen, "", 0);
 	if (IS_ERR(kid))
 		return PTR_ERR(kid);
 	pr_debug("authkeyid %*phN\n", kid->len, kid->data);
