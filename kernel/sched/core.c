@@ -1291,6 +1291,12 @@ static int compute_load_scale_factor(struct sched_cluster *cluster)
 {
 	int load_scale = 1024;
 
+	/* Force all performance-critical kthreads onto the big cluster */
+	if (p->flags & PF_PERF_CRITICAL)
+		new_mask = cpu_perf_mask;
+
+	rq = task_rq_lock(p, &flags);
+
 	/*
 	 * load_scale_factor accounts for the fact that task load
 	 * is in reference to "best" performing cpu. Task's load will need to be
