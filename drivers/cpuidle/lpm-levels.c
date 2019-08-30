@@ -994,15 +994,8 @@ static int lpm_cpuidle_enter(struct cpuidle_device *dev,
 		goto exit;
 
 	if (!use_psci) {
-		if (idx > 0)
-			update_debug_pc_event(CPU_ENTER, idx, 0xdeaffeed,
-					0xdeaffeed, true);
 		success = msm_cpu_pm_enter_sleep(cluster->cpu->levels[idx].mode,
 				true);
-
-		if (idx > 0)
-			update_debug_pc_event(CPU_EXIT, idx, success,
-							0xdeaffeed, true);
 	} else {
 		success = psci_enter_sleep(cluster, idx, true);
 	}
