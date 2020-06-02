@@ -145,7 +145,7 @@
 		qcom,gpio-req-tbl-label = "CAMIF_MCLK2",
 			"CAM_RESET2",
 			"CAM_STANDBY2",
-			"CAM_SENSOR_VIO";
+			"CAM_VIO";
 		status = "ok";
 		clocks = <&clock_gcc clk_mclk2_clk_src>,
 				<&clock_gcc clk_gcc_camss_mclk2_clk>;
@@ -161,7 +161,7 @@
 		qcom,csid-sd-index = <0>;
 		qcom,mount-angle = <270>;
 		qcom,led-flash-src = <&led_flash0>;
-	//	qcom,eeprom-src = <&eeprom0>;
+		qcom,eeprom-src = <&eeprom0>;
 		qcom,actuator-src = <&actuator0>;
 		cam_vdig-supply = <&pm8937_l23>;
 		cam_vana-supply = <&pm8937_l22>;
