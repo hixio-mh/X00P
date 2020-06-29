@@ -111,24 +111,6 @@ void cpuidle_use_deepest_state(bool enable)
 }
 
 /**
- * cpuidle_use_deepest_state - Set/clear governor override flag.
- * @enable: New value of the flag.
- *
- * Set/unset the current CPU to use the deepest idle state (override governors
- * going forward if set).
- */
-void cpuidle_use_deepest_state(bool enable)
-{
-	struct cpuidle_device *dev;
-
-	preempt_disable();
-	dev = cpuidle_get_device();
-	if (dev)
-		dev->use_deepest_state = enable;
-	preempt_enable();
-}
-
-/**
  * cpuidle_find_deepest_state - Find the deepest available idle state.
  * @drv: cpuidle driver for the given CPU.
  * @dev: cpuidle device for the given CPU.
